@@ -11,7 +11,24 @@
             text-align: center;
             font-size: 70px;
         }
+        p{
+            text-align: center;
+            font-size: 30px;
+        }
+        ul{
+            text-align: center;
+            list-style-type: none;
+            font-size: 30px;
+        }
     </style>
  <h1> Company Homepage</h1>
+ <p>The Current data and time is : {%now "DATETIME_FORMAT" %}</p>
+ <p>There are {{inventory_list|length}} items of inventory</p>
+ <ul>
+    {% for item in inventory_list%}
+    <li>{{item}}</li>
+    {% endfor %}
+ </ul>
+ <p>{{greeting|title}}</p>
 </body>
 </html>
