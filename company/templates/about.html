@@ -1,26 +1,7 @@
 {% extends "base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% block content %}
-    <style>
-        h1{
-            text-align: center;
-            font-size: 60px;
-        }
-        p{
-            text-align: center;
-            font-size: 30px;
-        }
-    </style>
-    <h1>Company About Page</h1>
-    <p>The Country Address is {{contact_address}} and the phone number is {{phone_number}}.</p>
-    {% endblock %}
-</body>
-</html>
+{% block content %}
+<h1>Company About Page</h1>
+<p>The company address is {{ contact_address }} and the phone number is
+{{ phone_number }}.</p>
+{% endblock %}
 
