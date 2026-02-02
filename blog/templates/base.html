@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Django Blog</title>
+    </head>
+    <body>
+        <style>
+            h1{
+                text-align: center;
+            }
+        </style>
+        <header>
+            <h1><a href = "{% url 'home'%}">Django Blog</a></h1>
+        </header>
+        <div>
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
