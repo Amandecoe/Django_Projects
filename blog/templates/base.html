@@ -1,13 +1,10 @@
+{% load static %}
 <html>
     <head>
         <title>Django Blog</title>
+        <link rel ="stylesheet" href = "{% static 'css/base.css' %}">
     </head>
     <body>
-        <style>
-            h1{
-                text-align: center;
-            }
-        </style>
         <header>
             <h1><a href = "{% url 'home'%}">Django Blog</a></h1>
         </header>
