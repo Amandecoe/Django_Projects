@@ -5,6 +5,6 @@ def post_list(request):
     posts = Post.objects.all()
     return render(request, "home.html", {'posts': posts})
 
-def post_detail(request, pk):
+def post_detail(request, pk): #pk = the primary key of a blog post
     post = get_object_or_404(Post, pk=pk)
     return render (request, "post_detail.html", {"post":post})
