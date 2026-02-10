@@ -117,3 +117,5 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"] #defines the additional location the built-in staticfiles app will traverse looking for static files beyond an app/static folder
+LOGIN_REDIRECT_URL = "home" #where the user is redirected after a successful login
+LOGOUT_REDIRECT_URL = "home"
