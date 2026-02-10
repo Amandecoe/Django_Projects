@@ -45,3 +45,26 @@ class BlogTests(TestCase):
         self.assertEqual(no_response.status_code,404) #checks if the response we dont want to see is an error or not
         self.assertContains(response, "A Good title")
         self.assertTemplateUsed(response, "post_detail.html")
+
+    def test_post_createview(self):
+        response = self.client.post(reverse("post_new"),{
+            "title": "New title",
+            "body": "New text",
+            "author": self.user.id,
+        },)
+        self.assertEqual(response.status_code,302)
+        self.assertEqual(Post.objects.last().title, "New title") #.last() revers to the last object created in our model, we did that above by post method
+        self.assertEqual(Post.objects.last().body, "New text")
+
+    def test_post_updateview(self):
+        response = self.client.post(reverse("post_edit", args = "1"),{
+            "title":"Updated title",
+            "body": "Updated text",
+        },)
+        self.assertEqual(response.status_code,302)
+        self.assertEqual(Post.objects.last().title, "Updated title")
+        self.assertEqual(Post.objects.last().body, "Updated text")
+
+    def test_post_deleteview(self):
+        response = self.client.post(reverse("post_delete", args = "1"))
+        self.assertEqual(response.status_code, 302)
