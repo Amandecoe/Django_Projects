@@ -2,14 +2,47 @@
 {% block title %}Home{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
+<div class = "page">
 <p>Hi {{ user.username }}!</p>
 <form action="{% url 'logout' %}" method="post">
 {% csrf_token %}
-<button type="submit">Log Out</button>
+<button class = "logout" type="submit">Log Out</button>
 </form>
 {% else %}
 <p>You are not logged in</p>
 <a href="{% url 'login' %}">Log In</a> |
 <a href="{% url 'signup' %}">Sign Up</a>
 {% endif %}
+</div>
+<style>
+    p{
+        text-align: center;
+        font-size: 40px;
+        color: blue;
+    }
+    .logout{
+        text-align: center;
+        color: white;
+        background-color: rgb(56, 56, 243);
+        border:none;
+        width:70px;
+        height:50px;
+        border-radius: 20px;
+    }
+    .logout:hover{
+        transform: scale(1.2);
+        color: black;
+        background-color: white;
+        border: 2px solid black;
+    }
+    .page{
+        display:flex;
+        align-content: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        height: 60vh;
+        width: 100vw;
+    }
+</style>
 {% endblock content %}
