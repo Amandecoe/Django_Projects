@@ -10,8 +10,7 @@
 </form>
 {% else %}
 <p>You are not logged in</p>
-<button class = "out"><a href="{% url 'login' %}">Log In</a> </button>|
-<button class = "out"><a href="{% url 'signup' %}">Sign Up</a></button>
+
 {% endif %}
 </div>
 <style>
@@ -44,7 +43,6 @@
         flex-direction: column;
         text-align: center;
         height: 60vh;
-        width: 100vw;
     }
     .out{
         text-align: center;
