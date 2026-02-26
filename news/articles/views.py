@@ -24,7 +24,7 @@ class ArticleUpdateView(UpdateView):
 
 class ArticleDeleteView(DeleteView):
     model = Article
-    template_engine = "article_delete.html"
+    template_name = "article_delete.html"
     success_url = reverse_lazy("article_list") #where you are redirected after deleting an article
 
 class ArticleCreateView(CreateView):
