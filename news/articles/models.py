@@ -15,5 +15,7 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
+    def get_absolute_url(self): #defines where you will access the object's detail page and where users are redirected to after Creating or Deleting
         return reverse("article_detail", kwargs={"pk": self.pk})
+
+class Comment
