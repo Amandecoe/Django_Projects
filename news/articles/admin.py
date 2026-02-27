@@ -1,7 +1,12 @@
 from django.contrib import admin
 from .models import Article, Comment
 # Register your models here.
+class CommentInline(admin.TabularInline): #displays foreign key relationships in a visual way
+    model = Comment
 class ArticleAdmin(admin.ModelAdmin):
+    inlines = [
+        CommentInline
+    ]
     list_display = [
         "title",
         "body",
