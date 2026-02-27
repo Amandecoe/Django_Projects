@@ -33,5 +33,9 @@ class ArticleCreateView(CreateView):
     fields = (
         "title",
         "body",
-        "author",
     )
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form) #sets the author to the existing user rather than it
+                                        #being set to anyone who chooses to from the users.
