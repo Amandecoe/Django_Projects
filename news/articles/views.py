@@ -15,7 +15,7 @@ class ArticleDetailView(LoginRequiredMixin,DetailView):
     model = Article
     template_name = "article_detail.html"
 
-class ArticleUpdateView(UserPassesTestMixin,LoginRequiredMixin,UpdateView):
+class ArticleUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Article
     fields = (
         "title",
@@ -23,10 +23,18 @@ class ArticleUpdateView(UserPassesTestMixin,LoginRequiredMixin,UpdateView):
     )
     template_name = "article_edit.html"
 
-class ArticleDeleteView(LoginRequiredMixin,DeleteView):
+    def test_fun(self): #is the function used by the UserPassesTestMixin to test the user
+        obj = self.get_object()
+        return obj.author == self.request.user
+
+class ArticleDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Article
     template_name = "article_delete.html"
     success_url = reverse_lazy("article_list") #where you are redirected after deleting an article
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
 
 class ArticleCreateView(LoginRequiredMixin,CreateView):
     model = Article
