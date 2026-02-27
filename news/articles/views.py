@@ -3,18 +3,19 @@ from .models import Article
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # Create your views here.
 
-class ArticleListView(ListView):
+class ArticleListView(LoginRequiredMixin,ListView):
     model = Article
     template_name = "article_list.html"
 
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(LoginRequiredMixin,DetailView):
     model = Article
     template_name = "article_detail.html"
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(UserPassesTestMixin,LoginRequiredMixin,UpdateView):
     model = Article
     fields = (
         "title",
@@ -22,12 +23,12 @@ class ArticleUpdateView(UpdateView):
     )
     template_name = "article_edit.html"
 
-class ArticleDeleteView(DeleteView):
+class ArticleDeleteView(LoginRequiredMixin,DeleteView):
     model = Article
     template_name = "article_delete.html"
     success_url = reverse_lazy("article_list") #where you are redirected after deleting an article
 
-class ArticleCreateView(CreateView):
+class ArticleCreateView(LoginRequiredMixin,CreateView):
     model = Article
     template_name = "article_new.html"
     fields = (
