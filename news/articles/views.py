@@ -23,7 +23,7 @@ class ArticleUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     )
     template_name = "article_edit.html"
 
-    def test_fun(self): #is the function used by the UserPassesTestMixin to test the user
+    def test_func(self): #is the function used by the UserPassesTestMixin to test the user
         obj = self.get_object()
         return obj.author == self.request.user
 
