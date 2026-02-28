@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .forms import CommentForm
 # Create your views here.
 
 class ArticleListView(LoginRequiredMixin,ListView):
@@ -14,6 +15,11 @@ class ArticleListView(LoginRequiredMixin,ListView):
 class ArticleDetailView(LoginRequiredMixin,DetailView):
     model = Article
     template_name = "article_detail.html"
+
+    def get_context_data(self, **kwargs): #adds information to the template by updating the context
+        context = super().get_context_data(**kwargs) #pull all the existing information into the context using super()
+        context ["form"] = CommentForm() # added the variable name form with teh value of Commentform
+        return context #return the updated content
 
 class ArticleUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Article
